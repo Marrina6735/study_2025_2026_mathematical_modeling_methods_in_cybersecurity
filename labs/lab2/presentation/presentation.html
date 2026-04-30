@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-01-01" />
+  <title>Лабораторная работа №2</title>
+  <style>
+    html {
+      font-family: Arial;
+      font-size: 9pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Courier New;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  
+  
+  
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Лабораторная работа №2</h1>
+<p class="subtitle">Методы математического моделирования в
+кибербезопасности. Практикум</p>
+<p class="author"><p>Коняева Марина Александровна  <br />
+НФИмд-01-25<br />
+Студ. билет: 1032259383</p></p>
+<p class="date"><p>2026</p></p>
+</header>
+<h1 id="цель-работы">Цель работы</h1>
+<p>Освоить базовые методы вероятностного моделирования случайных
+процессов в контексте кибербезопасности.</p>
+<p>На примере моделирования потока атак на веб-сервер изучить:</p>
+<ul>
+<li>генерацию случайных величин с заданным распределением;</li>
+<li>статистический анализ смоделированных данных;</li>
+<li>проверку соответствия эмпирического распределения
+теоретическому;</li>
+<li>оценку вероятностей редких событий;</li>
+<li>определить набор параметров модели (интенсивность атак, длительность
+наблюдения и т.д.);</li>
+<li>реализовать симуляцию пуассоновского потока атак;</li>
+<li>выполнить статистический анализ результатов;</li>
+<li>визуализировать данные и проверить соответствие теоретическим
+распределениям.</li>
+</ul>
+<h1 id="задание">Задание</h1>
+<ol type="1">
+<li>Создать проект DrWatson с именем project.</li>
+<li>Определить набор параметров модели (словарь params) с возможностью
+варьирования.</li>
+<li>Написать функцию simulate_attacks(params), которая возвращает
+структуру с результатами симуляции (например, массив числа атак по
+часам, интервалы, моменты времени).</li>
+<li>Использовать produce_or_load для запуска симуляции с заданными
+параметрами и сохранения результатов на диск.</li>
+<li>Провести серию экспериментов с разными значениями параметров
+(например, разные <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />, разная
+длительность).</li>
+<li>Загрузить сохранённые результаты и выполнить:
+<ul>
+<li>построение гистограммы числа атак за час и сравнение с теоретическим
+распределением Пуассона;</li>
+<li>построение графика накопленного числа атак и интервалов между
+атаками;</li>
+<li>проверку экспоненциальности интервалов (гистограмма, QQ-plot,
+возможно критерий согласия);</li>
+<li>оценку вероятности события «более 10 атак за час» теоретически и
+эмпирически.</li>
+</ul></li>
+<li>Проанализировать зависимость точности оценки вероятности от числа
+симуляций.</li>
+</ol>
+<h1 id="теоретическое-введение">Теоретическое введение</h1>
+<p>Во многих задачах кибербезопасности поток атак (или инцидентов) можно
+приближённо считать простейшим (пуассоновским) потоком. Для такого
+потока число событий <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20N_t" alt="N_t"
+title="N_t" class="math inline" /> за время <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20t" alt="t"
+title="t" class="math inline" /> распределено по закону Пуассона:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20P%28N_t%20%3D%20k%29%20%3D%20%5Cfrac%7B%28%5Clambda%20t%29%5Ek%7D%7Bk%21%7D%20e%5E%7B-%5Clambda%20t%7D%2C%20%5Cquad%20k%20%3D%200%2C%201%2C%202%2C%20%5Cdots"
+alt="P(N_t = k) = \frac{(\lambda t)^k}{k!} e^{-\lambda t}, \quad k = 0, 1, 2, \dots"
+title="P(N_t = k) = \frac{(\lambda t)^k}{k!} e^{-\lambda t}, \quad k = 0, 1, 2, \dots"
+class="math display" /></p>
+<p>где <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> — интенсивность
+потока (среднее число событий в единицу времени).</p>
+<p>В простейшем потоке интервалы времени между соседними событиями <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Ctau_1%2C%20%5Ctau_2%2C%20%5Cdots"
+alt="\tau_1, \tau_2, \dots" title="\tau_1, \tau_2, \dots"
+class="math inline" /> независимы и имеют экспоненциальное распределение
+с параметром <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20f%28%5Ctau%29%20%3D%20%5Clambda%20e%5E%7B-%5Clambda%20%5Ctau%7D%2C%20%5Cquad%20%5Ctau%20%5Cgeq%200"
+alt="f(\tau) = \lambda e^{-\lambda \tau}, \quad \tau \geq 0"
+title="f(\tau) = \lambda e^{-\lambda \tau}, \quad \tau \geq 0"
+class="math display" /></p>
+<p>Среднее значение интервала: <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Cmathbb%7BE%7D%5B%5Ctau%5D%20%3D%201%2F%5Clambda"
+alt="\mathbb{E}[\tau] = 1/\lambda" title="\mathbb{E}[\tau] = 1/\lambda"
+class="math inline" />.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="подготовка-проекта">Подготовка проекта</h2>
+<pre><code>using Pkg
+Pkg.activate(&quot;.&quot;)
+Pkg.add(&quot;DrWatson&quot;)
+Pkg.add(&quot;Distributions&quot;)
+Pkg.add(&quot;Plots&quot;)
+Pkg.add(&quot;StatsPlots&quot;)
+Pkg.add(&quot;DataFrames&quot;)
+Pkg.add(&quot;JLD2&quot;)
+Pkg.add(&quot;Random&quot;)
+Pkg.add(&quot;Statistics&quot;)
+Pkg.add(&quot;CSV&quot;)
+Pkg.add(&quot;HypothesisTests&quot;)</code></pre>
+<h1 id="выполнение-лабораторной-работы-1">Выполнение лабораторной
+работы</h1>
+<h2 id="конвейер-скриптов">Конвейер скриптов</h2>
+<p>Представленные скрипты образуют исследовательский конвейер:</p>
+<ul>
+<li>Моделирование (simulation.jl) — вычислительное ядро.</li>
+<li>Генерация данных (run_experiment.jl) — получение реализаций для
+фиксированных параметров.</li>
+<li>Анализ и визуализация (analyze.jl) — проверка соответствия модели
+теоретическим распределениям.</li>
+<li>Исследование сходимости (convergence.jl) — изучение точности
+оценок.</li>
+<li>Параметрическое исследование (parameter_sweep.jl) — анализ
+чувствительности к изменению интенсивности.</li>
+</ul>
+<p>Для выполнения работы необходимо создать проект с помощью DrWatson.
+Затем создадим в этом проекте скрипт src/simulation.jl, который содержит
+функцию simulate_attacks, реализующую вероятностную модель потока
+атак.</p>
+<h1 id="выполнение-лабораторной-работы-2">Выполнение лабораторной
+работы</h1>
+<h2 id="создание-и-инициализация-проекта-drwatson">Создание и
+инициализация проекта DrWatson</h2>
+<figure id="fig-002">
+<img src="image/2.png" style="width:70.0%"
+alt="Установка необходимых пакетов" />
+<figcaption aria-hidden="true">Установка необходимых
+пакетов</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-3">Выполнение лабораторной
+работы</h1>
+<h2 id="ядро-моделирования-файл-srcsimulation.jl">Ядро моделирования:
+Файл: src/simulation.jl</h2>
+<p>Создаём файл src/simulation.jl, функция simulate_attacks реализует
+вероятностную модель потока атак.</p>
+<p>Эта функция:</p>
+<ul>
+<li>Принимает интенсивность потока <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> (среднее число атак
+в час) и длительность наблюдения T (в часах).</li>
+<li>Генерирует две реализации потока:
+<ul>
+<li>Почасовое число атак (hourly_counts) — массив длины floor(Int, T),
+каждый элемент — случайное число из распределения Пуассона с параметром
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />.</li>
+<li>Точные моменты атак — моделирование экспоненциальных интервалов
+между событиями до тех пор, пока их сумма не превысит T. Возвращает
+массив интервалов intervals и массив моментов времени attack_times
+(накопленные суммы).</li>
+</ul></li>
+<li>Возвращает NamedTuple с тремя полями: hourly_counts, intervals,
+attack_times.</li>
+</ul>
+<p>Результат:</p>
+<ul>
+<li>Функция не сохраняет данные самостоятельно, а лишь возвращает
+структуру, которая затем используется в скриптах для дальнейшего анализа
+или сохранения.</li>
+</ul>
+<h1 id="выполнение-лабораторной-работы-4">Выполнение лабораторной
+работы</h1>
+<h2
+id="запуск-эксперимента-с-сохранением-результатов-однократный-запуск-эксперимента">Запуск
+эксперимента с сохранением результатов: однократный запуск
+эксперимента</h2>
+<p>Файл <em>scripts/run_experiment.jl</em> выполняет симуляцию с
+заданными параметрами, вычисляет эмпирическую вероятность события «более
+10 атак за час» и сохраняет все результаты на диск. Скрипт предназначен
+для первичной генерации данных, которые потом будут анализироваться.</p>
+<p>Результат:</p>
+<p>— В папке data/attack_sim/ создаётся файл с именем, отражающим
+параметры (например, attack_sim_<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda"
+class="math inline" />=5.0_T=24.0_num_hours_for_est=10000.jld2). —
+Внутри — словарь с ключами: :hourly_counts, :intervals, :attack_times,
+:emp_prob, :theor_prob.</p>
+<h1 id="выполнение-лабораторной-работы-5">Выполнение лабораторной
+работы</h1>
+<h2 id="анализ-и-визуализация-результатов-одного-эксперимента">Анализ и
+визуализация результатов одного эксперимента</h2>
+<p>Файл <em>scripts/analyze.jl</em> загружает сохранённые данные и
+строит четыре диагностических графика, позволяющих визуально оценить
+соответствие смоделированного потока теоретическим предположениям
+(пуассоновости и экспоненциальности).</p>
+<h1 id="выполнение-лабораторной-работы-6">Выполнение лабораторной
+работы</h1>
+<h2 id="анализ-и-визуализация-результатов-одного-эксперимента-1">Анализ
+и визуализация результатов одного эксперимента</h2>
+<figure id="fig-base">
+<img src="image/attack_sim_plots.png" style="width:80.0%"
+alt="Визуализация результатов одного эксперимента" />
+<figcaption aria-hidden="true">Визуализация результатов одного
+эксперимента</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-7">Выполнение лабораторной
+работы</h1>
+<h2 id="исследование-сходимости-оценки-вероятности">Исследование
+сходимости оценки вероятности</h2>
+<p>Файл <em>scripts/convergence.jl</em> позволяет изучить, как быстро
+эмпирическая оценка вероятности редкого события приближается к
+теоретическому значению при увеличении объёма выборки.Это важный
+практический аспект моделирования: для надёжной оценки редких событий
+требуется большой объём данных.</p>
+<p>Результат: График, иллюстрирующий уменьшение случайной ошибки оценки
+с ростом выборки, и файл с данными для повторного построения.</p>
+<h1 id="выполнение-лабораторной-работы-8">Выполнение лабораторной
+работы</h1>
+<h2 id="исследование-сходимости-оценки-вероятности-1">Исследование
+сходимости оценки вероятности</h2>
+<figure id="fig-param">
+<img src="image/convergence.png" style="width:85.0%"
+alt="Сходимость оценки вероятности" />
+<figcaption aria-hidden="true">Сходимость оценки
+вероятности</figcaption>
+</figure>
+<p>График, иллюстрирующий уменьшение случайной ошибки оценки с ростом
+выборки, и файл с данными для повторного построения.</p>
+<h1 id="выполнение-лабораторной-работы-9">Выполнение лабораторной
+работы</h1>
+<h2
+id="многовариантный-эксперимент-параметрическое-исследование">Многовариантный
+эксперимент: параметрическое исследование</h2>
+<p>Файл <em>scripts/parameter_sweep.jl</em> позволяет систематически
+изучить, как изменение интенсивности атак <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> влияет на
+характеристики потока и, в частности, на вероятность P(&gt; 10). Скрипт
+автоматизирует запуск множества экспериментов, сохраняет все результаты
+и строит как обобщающий график, так и детальные графики для каждого
+значения <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />.</p>
+<h1 id="выполнение-лабораторной-работы-10">Выполнение лабораторной
+работы</h1>
+<h2
+id="многовариантный-эксперимент-параметрическое-исследование-1">Многовариантный
+эксперимент: параметрическое исследование</h2>
+<figure id="fig-double">
+<img src="image/attack_sim_plots.png" style="width:80.0%"
+alt="Зависимость вероятности от интенсивности атак" />
+<figcaption aria-hidden="true">Зависимость вероятности от интенсивности
+атак</figcaption>
+</figure>
+<p>Результат:</p>
+<p>— Набор JLD2-файлов для каждого <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> в data/attack_sim/.
+— Детальные графики для каждого <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> в
+plots/parameter_sweep/. — Сводная таблица (CSV) и файл с данными в
+data/parameter_sweep/. — Обобщающий график в корне plots/, показывающий
+зависимость вероятности от интенсивности.</p>
+<h1 id="выполнение-лабораторной-работы-11">Выполнение лабораторной
+работы</h1>
+<h2
+id="многовариантный-эксперимент-параметрическое-исследование-2">Многовариантный
+эксперимент: параметрическое исследование</h2>
+<figure id="fig-double">
+<img src="image/attack_sim_λ=5.0.png" style="width:80.0%"
+alt="Зависимость вероятности от интенсивности атак" />
+<figcaption aria-hidden="true">Зависимость вероятности от интенсивности
+атак</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-12">Выполнение лабораторной
+работы</h1>
+<h2 id="литературный-стиль">Литературный стиль</h2>
+<p>Преобразовываем в производные форматы с помощью файла
+<em>tangle.jl</em></p>
+<figure id="fig-time">
+<img src="image/literate_simulation.png" style="width:80.0%"
+alt="Задание" />
+<figcaption aria-hidden="true">Задание</figcaption>
+</figure>
+<h1 id="дополнительные-задания">Дополнительные задания</h1>
+<h2 id="задание-1">1 задание</h2>
+<p><strong>Изменить интенсивность <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> (например, 2, 8, 12
+атак/час) и сравнить результаты.</strong></p>
+<ul>
+<li><strong>При <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />=2 распределение
+числа атак сдвинуто влево — пик около 1-2 атак за час, эмпирическая
+гистограмма хорошо совпадает с теоретическим Пуассоном(2). Интервалы
+между атаками большие — около 0.3-2 ч. Вероятность P(&gt;10) близка к
+нулю (~8.3·10⁻⁶).</strong></li>
+<li><strong>При <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />=8 распределение
+смещается вправо — пик около 7-8 атак за час, интервалы короткие —
+большинство менее 0.2 ч. Вероятность P(&gt;10) резко возрастает
+(~0.184).</strong></li>
+</ul>
+<figure id="fig-time">
+<img src="image/lambda_comparison.png" style="width:80.0%"
+alt="Дополнительное задание" />
+<figcaption aria-hidden="true">Дополнительное задание</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-13">Выполнение лабораторной
+работы</h1>
+<h2 id="задание-2">2 задание</h2>
+<p><strong>Моделировать нестационарный пуассоновский поток с
+интенсивностью, зависящей от времени суток: <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda%28%F0%9D%91%A1%29%20%3D%202%20%2B%205%20sin%28%5Cpi%20t%2F12%29"
+alt="\lambda(𝑡) = 2 + 5 sin(\pi t/12)"
+title="\lambda(𝑡) = 2 + 5 sin(\pi t/12)" class="math inline" />.
+Модифицировать функцию симуляции (использовать метод прореживания или
+неоднородный пуассоновский процесс).</strong></p>
+<figure id="fig-time">
+<img src="image/nonstationary_simulation.png" style="width:80.0%"
+alt="Дополнительное задание" />
+<figcaption aria-hidden="true">Дополнительное задание</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-14">Выполнение лабораторной
+работы</h1>
+<h2 id="задание-3">3 задание</h2>
+<p><strong>Исследовать вероятность события «ни одной атаки за смену (8
+часов)» или «не менее 3 атак за 30 минут»</strong></p>
+<figure id="fig-time">
+<img src="image/probability_convergence.png" style="width:80.0%"
+alt="Дополнительное задание" />
+<figcaption aria-hidden="true">Дополнительное задание</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-15">Выполнение лабораторной
+работы</h1>
+<h2 id="задание-4">4 задание</h2>
+<p><strong>Оценить доверительный интервал для вероятности редкого
+события методом бутстрепа.</strong></p>
+<p>С помощью бутстрапа и прореживания потока находим 95-проуентный ДИ и
+визуализируем.</p>
+<figure id="fig-time">
+<img src="image/bootstrap_analysis.png" style="width:80.0%"
+alt="Дополнительное задание" />
+<figcaption aria-hidden="true">Дополнительное задание</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-16">Выполнение лабораторной
+работы</h1>
+<h2 id="задание-5">5 задание</h2>
+<p><strong>Добавить в модель возможность успешности атаки: каждая атака
+имеет вероятность успеха 𝑝, тогда успешные атаки образуют прореженный
+п</strong></p>
+<p>Добавляем вероятность успешности атаки и рассчитываем соответствующие
+вероятности.</p>
+<figure id="fig-time">
+<img src="image/thinned_attacks_p=0.5.png" style="width:80.0%"
+alt="Дополнительное задание" />
+<figcaption aria-hidden="true">Дополнительное задание</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<ol type="1">
+<li>Сформирована структура рабочего пространства на основе DrWatson,
+обеспечивающая разделение исходных кодов, данных и документации.</li>
+<li>Реализована симуляция пуассоновского потока атак двумя способами:
+почасовые счётчики из распределения Пуассона и точные моменты через
+экспоненциальные интервалы.</li>
+<li>Выполнен статистический анализ результатов: гистограммы, накопленный
+график, QQ-plot — все подтверждают соответствие теоретическим
+распределениям.</li>
+<li>Проведено параметрическое исследование: показана зависимость
+P(&gt;10) от интенсивности <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> — при росте <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" /> от 2 до 15
+вероятность возрастает от ~0 до ~0.88.</li>
+<li>Исследована сходимость оценки вероятности редкого события: для
+надёжной оценки P(&gt;10) при <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20%5Clambda"
+alt="\lambda" title="\lambda" class="math inline" />=5 необходим объём
+выборки порядка 10 000–100 000 часов.</li>
+<li>Выполнена интеграция вычислительных экспериментов с их описанием за
+счёт преобразования кода в литературный стиль.</li>
+<li>Автоматизирована генерация артефактов (чистый код, Notebook, отчёт
+Quarto), что повышает воспроизводимость исследования.</li>
+</ol>
+<h1 id="список-литературы">Список литературы</h1>
+<ol type="1">
+<li>Описание лабораторной работы</li>
+</ol>
+</body>
+</html>

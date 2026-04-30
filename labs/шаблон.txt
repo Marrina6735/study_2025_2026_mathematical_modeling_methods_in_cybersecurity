@@ -1,0 +1,28 @@
+Лабораторная работа №
+
+Rutube
+Плейлист лабораторной работы:
+Скринкаст выполнения лабораторной работы:
+Скринкаст процесса подготовки отчёта:
+Скринкаст процесса подготовки презентации:
+Скринкаст защиты презентации лабораторной работы:
+
+Plvideo
+Плейлист лабораторной работы:
+Скринкаст выполнения лабораторной работы:
+Скринкаст процесса подготовки отчёта:
+Скринкаст процесса подготовки презентации:
+Скринкаст защиты презентации лабораторной работы:
+
+Ссылка на весь репозиторий:
+Ссылка на лабораторную работу:
+Ссылка на отчет:
+Ссылка на презентацию:
+
+pandoc report.md -o report.pdf --pdf-engine=lualatex -V mainfont="Times New Roman" -V sansfont="DejaVu Sans" -V monofont="DejaVu Sans Mono"
+
+pandoc report.md -o report.docx --pdf-engine=lualatex -V mainfont="Times New Roman" -V sansfont="DejaVu Sans" -V monofont="DejaVu Sans Mono"
+
+pandoc "presentation.md" -t beamer --pdf-engine=lualatex -o "presentation.pdf"
+
+pandoc presentation.md -s --webtex -o presentation.html

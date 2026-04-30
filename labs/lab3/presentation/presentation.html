@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-01-01" />
+  <title>Лабораторная работа №3</title>
+  <style>
+    html {
+      font-family: Arial;
+      font-size: 9pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Courier New;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  
+  
+  
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Лабораторная работа №3</h1>
+<p class="subtitle">Методы математического моделирования в
+кибербезопасности. Практикум</p>
+<p class="author"><p>Коняева Марина Александровна  <br />
+НФИмд-01-25<br />
+Студ. билет: 1032259383</p></p>
+<p class="date"><p>2026</p></p>
+</header>
+<h1 id="цель-работы">Цель работы</h1>
+<p>Освоить методы построения и анализа графов атак для оценки
+уязвимостей сетевой инфраструктуры. На примере моделирования атак на
+корпоративную сеть изучить:</p>
+<ul>
+<li>представление сетевой топологии и уязвимостей в виде
+ориентированного графа;</li>
+<li>алгоритмы поиска всех возможных путей атаки от начальных точек до
+целевых активов;</li>
+<li>расчёт метрик центральности для определения критических узлов;</li>
+<li>визуализацию графа с цветовой индикацией уровня риска;</li>
+<li>оценку вероятности успешной атаки с учётом сложности эксплуатации
+уязвимостей.</li>
+</ul>
+<h1 id="задание">Задание</h1>
+<ol type="1">
+<li>Построить граф атак для заданной топологии сети.</li>
+<li>Реализовать алгоритм поиска всех путей от заданного источника к
+цели.</li>
+<li>Рассчитать метрики центральности для всех узлов и выявить наиболее
+критичные.</li>
+<li>Визуализировать граф, раскрашивая узлы в зависимости от степени
+риска.</li>
+<li>Присвоить каждому ребру вес (вероятность успешной атаки) и вычислить
+наиболее вероятный путь атаки.</li>
+</ol>
+<h1 id="теоретическое-введение">Теоретическое введение</h1>
+<p>Граф атак — это ориентированный граф, в котором вершины представляют
+состояния системы (узлы сети, привилегии), а рёбра — действия атакующего
+по переходу между состояниями. В упрощённой модели:</p>
+<ul>
+<li>вершины — сетевые узлы (хост, сервер);</li>
+<li>направленные рёбра — возможность атаки с одного узла на другой.</li>
+</ul>
+<p>Задача анализа графа атак сводится к нахождению всех путей от
+источника (злоумышленник) к цели (критический актив).</p>
+<p>Для выявления критичных узлов используются следующие метрики:</p>
+<ul>
+<li><strong>Степень центральности</strong> — количество инцидентных
+рёбер (in-degree и out-degree);</li>
+<li><strong>Центральность по посредничеству</strong> — доля кратчайших
+путей, проходящих через узел;</li>
+<li><strong>PageRank</strong> — мера важности узла с учётом важности
+ссылающихся на него узлов.</li>
+</ul>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="подготовка-проекта">Подготовка проекта</h2>
+<pre><code>using Pkg
+Pkg.activate(&quot;.&quot;)
+Pkg.add(&quot;DrWatson&quot;)
+Pkg.add(&quot;Distributions&quot;)
+Pkg.add(&quot;Plots&quot;)
+Pkg.add(&quot;StatsPlots&quot;)
+Pkg.add(&quot;DataFrames&quot;)
+Pkg.add(&quot;JLD2&quot;)
+Pkg.add(&quot;Random&quot;)
+Pkg.add(&quot;Statistics&quot;)
+Pkg.add(&quot;CSV&quot;)
+Pkg.add(&quot;HypothesisTests&quot;)</code></pre>
+<h1 id="выполнение-лабораторной-работы-1">Выполнение лабораторной
+работы</h1>
+<h2 id="ядро-моделирования-графа-атак">Ядро моделирования графа
+атак</h2>
+<p>Создадим отдельный файл src/attack_graph.jl. Это основной модуль,
+используемый всеми скриптами.</p>
+<p>Результатом работы функций являются граф, все найденные пути атаки,
+метрики центральности, веса рёбер и наиболее вероятный путь.</p>
+<h1 id="выполнение-лабораторной-работы-2">Выполнение лабораторной
+работы</h1>
+<h2 id="однократный-запуск-эксперимента">Однократный запуск
+эксперимента</h2>
+<p>Создание файла scripts/ag_run_experiment.jl.</p>
+<figure id="fig-base">
+<img src="image/0_.png" style="width:60.0%"
+alt="Запуск файла и вывод в консоли" />
+<figcaption aria-hidden="true">Запуск файла и вывод в
+консоли</figcaption>
+</figure>
+<figure id="fig-base">
+<img src="image/0.png" style="width:60.0%"
+alt="JLD2-файл attack_graph" />
+<figcaption aria-hidden="true">JLD2-файл attack_graph</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-3">Выполнение лабораторной
+работы</h1>
+<h2 id="визуализация-и-анализ-графа">Визуализация и анализ графа</h2>
+<p>Создадим файл scripts/ag_analyze.jl.</p>
+<figure id="fig-base">
+<img src="image/1__.png" style="width:60.0%"
+alt="Запуск файла и вывод в консоли" />
+<figcaption aria-hidden="true">Запуск файла и вывод в
+консоли</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-4">Выполнение лабораторной
+работы</h1>
+<h2 id="визуализация-и-анализ-графа-1">Визуализация и анализ графа</h2>
+<figure id="fig-base">
+<img src="image/1.png" style="width:60.0%"
+alt="Визуализация графа (цветовая индикация по PageRank)" />
+<figcaption aria-hidden="true">Визуализация графа (цветовая индикация по
+PageRank)</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-5">Выполнение лабораторной
+работы</h1>
+<h2 id="исследование-масштабируемости">Исследование
+масштабируемости</h2>
+<p>Создадим файл scripts/ag_convergence.jl.</p>
+<figure id="fig-base">
+<img src="image/2_.png" style="width:80.0%"
+alt="Запуск файла и вывод в консоли" />
+<figcaption aria-hidden="true">Запуск файла и вывод в
+консоли</figcaption>
+</figure>
+<figure id="fig-base">
+<img src="image/2__.png" style="width:80.0%"
+alt="JLD2-файл convergence_date" />
+<figcaption aria-hidden="true">JLD2-файл convergence_date</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-6">Выполнение лабораторной
+работы</h1>
+<h2 id="исследование-масштабируемости-1">Исследование
+масштабируемости</h2>
+<figure id="fig-base">
+<img src="image/2.png" style="width:80.0%"
+alt="Рост времени и числа путей с увеличением сети" />
+<figcaption aria-hidden="true">Рост времени и числа путей с увеличением
+сети</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-7">Выполнение лабораторной
+работы</h1>
+<h2 id="параметрическое-исследование">Параметрическое исследование</h2>
+<p>Создадим файл scripts/parameter_sweep.jl.</p>
+<figure id="fig-base">
+<img src="image/3_.png" style="width:80.0%"
+alt="Запуск файла и вывод в консоли" />
+<figcaption aria-hidden="true">Запуск файла и вывод в
+консоли</figcaption>
+</figure>
+<figure id="fig-base">
+<img src="image/3__.png" style="width:80.0%" alt="CSV файл results" />
+<figcaption aria-hidden="true">CSV файл results</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-8">Выполнение лабораторной
+работы</h1>
+<h2 id="параметрическое-исследование-1">Параметрическое
+исследование</h2>
+<figure id="fig-base">
+<img src="image/3.png" style="width:80.0%"
+alt="Связность графа, число путей, средняя длина путей" />
+<figcaption aria-hidden="true">Связность графа, число путей, средняя
+длина путей</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-9">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания">Дополнительные задания</h2>
+<p>Добавили в граф атак веса уязвимостей (CVSS) и найшли наиболее
+вероятный путь с помощью алгоритма Дейкстры (с учётом логарифмов
+вероятностей).</p>
+<figure id="fig-base">
+<img src="image/1_1.png" style="width:80.0%"
+alt="Запуск файла и вывод в консоли" />
+<figcaption aria-hidden="true">Запуск файла и вывод в
+консоли</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-10">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания-1">Дополнительные задания</h2>
+<p>Выполним дополнительное задание 2: реализовали модель распространения
+атаки с использованием агентного подхода.</p>
+<figure id="fig-base">
+<img src="image/2_1.png" style="width:80.0%"
+alt="Вероятность заражения" />
+<figcaption aria-hidden="true">Вероятность заражения</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-11">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания-2">Дополнительные задания</h2>
+<p>Выполним дополнительное задание 3: сравнить разные метрики
+центральности и определить, какие из них лучше предсказывают узлы,
+наиболее уязвимые для атак.</p>
+<figure id="fig-base">
+<img src="image/3_1.png" style="width:80.0%" alt="Разные метрики" />
+<figcaption aria-hidden="true">Разные метрики</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-12">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания-3">Дополнительные задания</h2>
+<p>Выполним дополнительное задание 4: использовать реальные данные о
+топологии сети (например, из датасетов сетей) для построения графа
+атак.</p>
+<figure id="fig-base">
+<img src="image/4.png" style="width:80.0%"
+alt="Реальная корпоративная сеть" />
+<figcaption aria-hidden="true">Реальная корпоративная сеть</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-13">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания-4">Дополнительные задания</h2>
+<p>Выполним дополнительное задание 5: визуализировать граф с помощью
+интерактивных библиотек (например, GraphPlot с возможностью
+наведения).</p>
+<figure id="fig-base">
+<img src="image/5_1.png" style="width:80.0%" alt="Граф атак" />
+<figcaption aria-hidden="true">Граф атак</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-14">Выполнение лабораторной
+работы</h1>
+<h2 id="дополнительные-задания-5">Дополнительные задания</h2>
+<p>Выполним дополнительное задание 6: оценить эффективность защитных мер
+(например, изоляция узла с высокой betweenness centrality) на снижение
+числа путей атаки.</p>
+<figure id="fig-base">
+<img src="image/6_1__.png" style="width:80.0%"
+alt="Запуск файла и вывод в консоли (2)" />
+<figcaption aria-hidden="true">Запуск файла и вывод в консоли
+(2)</figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-15">Выполнение лабораторной
+работы</h1>
+<h2 id="контрольные-вопросы">Контрольные вопросы</h2>
+<p>Ответили на все контрольные вопросы лабораторной работы.</p>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были освоены методы построения
+и анализа графов атак. Были выполнены все задания лабораторной работы,
+также дополнительные и ответили на все контрольные вопросы.</p>
+<h1 id="список-литературы">Список литературы</h1>
+<ol type="1">
+<li>Описание лабораторной работы</li>
+</ol>
+</body>
+</html>

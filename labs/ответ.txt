@@ -1,0 +1,26 @@
+Лабораторная работа №1
+
+## Скринкасты
+
+- [Rutube](https://rutube.ru/plst/114257/)
+    - [Выполнение лабораторной работы](https://rutube.ru/video/5b59a36308292cc211043d52a4e14616/)
+    - [Подготовка отчёта](https://rutube.ru/video/5b59a36308292cc211043d52a4e14616/)
+    - [Подготовка презентации](https://rutube.ru/video/5b59a36308292cc211043d52a4e14616/)
+    - [Защита лабораторной работы](https://rutube.ru/video/5b59a36308292cc211043d52a4e14616/)
+
+- [VKvideo](https://vkvideo.ru/playlist/606414976_6)
+    - [Выполнение лабораторной работы](https://vkvideo.ru/video606414976_456239192)
+    - [Подготовка отчёта](https://vkvideo.ru/video606414976_456239192)
+    - [Подготовка презентации](https://vkvideo.ru/video606414976_456239192)
+    - [Защита лабораторной работы](https://vkvideo.ru/video606414976_456239192)
+
+- [Платформа](https://studio.plvideo.ru/channel/vZSk2MkaG7Qm/playlist/rNGbr_m0PhMU)
+    - [Выполнение лабораторной работы](https://plvideo.ru/watch?v=W5741K4QRBi1)
+    - [Подготовка отчёта](https://plvideo.ru/watch?v=W5741K4QRBi1)
+    - [Подготовка презентации](https://plvideo.ru/watch?v=W5741K4QRBi1)
+    - [Защита лабораторной работы](https://plvideo.ru/watch?v=W5741K4QRBi1)
+
+## Репозиторий
+
+- [Рабочий репозиторий](https://github.com/yamadharma/academic-laboratory-report-template)
+- [Релиз v2.0.2](https://github.com/yamadharma/academic-laboratory-report-template/releases/tag/v2.0.2)
