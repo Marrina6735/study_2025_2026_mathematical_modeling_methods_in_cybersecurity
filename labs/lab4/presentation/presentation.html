@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru-RU" xml:lang="ru-RU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2026-01-01" />
+  <title>Лабораторная работа №4</title>
+  <style>
+    html {
+      font-family: Arial;
+      font-size: 9pt;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Courier New;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  
+  
+  
+  
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Лабораторная работа №4</h1>
+<p class="subtitle">Методы математического моделирования в
+кибербезопасности. Практикум</p>
+<p class="author"><p>Коняева Марина Александровна  <br />
+НФИмд-01-25<br />
+Студ. билет: 1032259383</p></p>
+<p class="date"><p>2026</p></p>
+</header>
+<h1 id="цель-работы">Цель работы</h1>
+<p>Освоить применение теории игр для анализа противостояния в сфере
+информационной безопасности. Научиться строить матричную игру, находить
+равновесие Нэша в чистых и смешанных стратегиях.</p>
+<h1 id="задание">Задание</h1>
+<ol type="1">
+<li>Формализовать конфликт «Защитник–Нападающий» в виде
+антагонистической игры.</li>
+<li>Реализовать на Julia функции расчёта платёжной матрицы, поиска
+равновесия Нэша и симуляции игры.</li>
+<li>Визуализировать зависимость ожидаемого выигрыша и равновесных
+вероятностей от стоимости защиты и величины ущерба.</li>
+</ol>
+<h1 id="теоретическое-введение">Теоретическое введение</h1>
+<p>Игроки:</p>
+<ul>
+<li>Нападающий (Attacker);</li>
+<li>Защитник (Defender).</li>
+</ul>
+<p>Ожидаемые выигрыши:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_A%28%5Cmathbf%7Bp%7D%2C%5Cmathbf%7Bq%7D%29"
+alt="U_A(\mathbf{p},\mathbf{q})" title="U_A(\mathbf{p},\mathbf{q})"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathbf%7Bp%7D%5E%7BT%7DA%5Cmathbf%7Bq%7D"
+alt="\mathbf{p}^{T}A\mathbf{q}" title="\mathbf{p}^{T}A\mathbf{q}"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_D%28%5Cmathbf%7Bp%7D%2C%5Cmathbf%7Bq%7D%29"
+alt="U_D(\mathbf{p},\mathbf{q})" title="U_D(\mathbf{p},\mathbf{q})"
+class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cmathbf%7Bp%7D%5E%7BT%7DD%5Cmathbf%7Bq%7D"
+alt="\mathbf{p}^{T}D\mathbf{q}" title="\mathbf{p}^{T}D\mathbf{q}"
+class="math display" /></p>
+<h1 id="теоретическое-введение-1">Теоретическое введение</h1>
+<p>Равновесие Нэша:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_A%28%5Cmathbf%7Bp%7D%5E%7B%2A%7D%2C%5Cmathbf%7Bq%7D%5E%7B%2A%7D%29"
+alt="U_A(\mathbf{p}^{*},\mathbf{q}^{*})"
+title="U_A(\mathbf{p}^{*},\mathbf{q}^{*})" class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_A%28%5Cmathbf%7Bp%7D%2C%5Cmathbf%7Bq%7D%5E%7B%2A%7D%29"
+alt="U_A(\mathbf{p},\mathbf{q}^{*})"
+title="U_A(\mathbf{p},\mathbf{q}^{*})" class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_D%28%5Cmathbf%7Bp%7D%5E%7B%2A%7D%2C%5Cmathbf%7Bq%7D%5E%7B%2A%7D%29"
+alt="U_D(\mathbf{p}^{*},\mathbf{q}^{*})"
+title="U_D(\mathbf{p}^{*},\mathbf{q}^{*})" class="math display" /></p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20U_D%28%5Cmathbf%7Bp%7D%5E%7B%2A%7D%2C%5Cmathbf%7Bq%7D%29"
+alt="U_D(\mathbf{p}^{*},\mathbf{q})"
+title="U_D(\mathbf{p}^{*},\mathbf{q})" class="math display" /></p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="основной-модуль-simulation.jl">Основной модуль
+simulation.jl</h2>
+<p>Реализованы функции:</p>
+<ul>
+<li>построения платёжных матриц;</li>
+<li>поиска равновесия Нэша;</li>
+<li>проведения симуляций;</li>
+<li>сохранения результатов;</li>
+<li>загрузки результатов.</li>
+</ul>
+<p>Результат:</p>
+<ul>
+<li>файл <code>results.csv</code>;</li>
+<li>таблица с параметрами модели и найденными равновесиями.</li>
+</ul>
+<h1 id="выполнение-лабораторной-работы-1">Выполнение лабораторной
+работы</h1>
+<h2 id="запуск-симуляций">Запуск симуляций</h2>
+<p>Создан файл:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scripts<span class="op">/</span>run_sims.jl</span></code></pre></div>
+<p>Выполнен расчёт всех комбинаций параметров:</p>
+<ul>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V_1%20%5Cin%20%7B5%2C10%2C15%7D"
+alt="V_1 \in {5,10,15}" title="V_1 \in {5,10,15}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V_2%20%5Cin%20%7B5%2C10%2C15%7D"
+alt="V_2 \in {5,10,15}" title="V_2 \in {5,10,15}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20c_a%20%5Cin%20%7B0%2C1%2C3%7D"
+alt="c_a \in {0,1,3}" title="c_a \in {0,1,3}"
+class="math inline" /></li>
+<li><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20c_d%20%5Cin%20%7B0%2C1%2C3%7D"
+alt="c_d \in {0,1,3}" title="c_d \in {0,1,3}"
+class="math inline" /></li>
+</ul>
+<p>Всего строк</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%203%20%5Ctimes%203%20%5Ctimes%203%20%5Ctimes%203%20%3D%2081"
+alt="3 \times 3 \times 3 \times 3 = 81"
+title="3 \times 3 \times 3 \times 3 = 81" class="math display" /></p>
+<h1 id="выполнение-лабораторной-работы-2">Выполнение лабораторной
+работы</h1>
+<h2 id="анализ-результатов">Анализ результатов</h2>
+<figure id="fig-base">
+<img src="image/5.png" style="width:70.0%"
+alt="Зависимость вероятности атаки на первый актив p_1 от отношения ценностей V_1 / V_2" />
+<figcaption aria-hidden="true">Зависимость вероятности атаки на первый
+актив <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20p_1" alt="p_1"
+title="p_1" class="math inline" /> от отношения ценностей <img
+style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V_1" alt="V_1"
+title="V_1" class="math inline" /> / <img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Ctextstyle%20V_2" alt="V_2"
+title="V_2" class="math inline" /></figcaption>
+</figure>
+<h1 id="выполнение-лабораторной-работы-3">Выполнение лабораторной
+работы</h1>
+<h2 id="анализ-результатов-1">Анализ результатов</h2>
+<figure id="fig-base">
+<img src="image/6.png" style="width:70.0%"
+alt="Средний выигрыш Нападающег" />
+<figcaption aria-hidden="true">Средний выигрыш Нападающег</figcaption>
+</figure>
+<h1 id="дополнительное-задание">Дополнительное задание</h1>
+<p>Добавлены новые стратегии:</p>
+<p>Нападающий:</p>
+<ul>
+<li>Атаковать актив 1</li>
+<li>Атаковать актив 2</li>
+<li>Не атаковать</li>
+</ul>
+<p>Защитник:</p>
+<ul>
+<li>Защищать актив 1</li>
+<li>Защищать актив 2</li>
+<li>Не защищать ничего</li>
+</ul>
+<p>Размерность игры:</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%202%5Ctimes2%0A%5Crightarrow%0A3%5Ctimes3"
+alt="2\times2
+\rightarrow
+3\times3" title="2\times2
+\rightarrow
+3\times3" class="math display" /></p>
+<h1 id="дополнительное-задание-1">Дополнительное задание</h1>
+<h2 id="влияние-стоимости-атаки">Влияние стоимости атаки</h2>
+<figure id="fig-base">
+<img src="image/11.png" style="width:70.0%"
+alt="Влияние стоимости атаки на отказ от атаки" />
+<figcaption aria-hidden="true">Влияние стоимости атаки на отказ от
+атаки</figcaption>
+</figure>
+<p>Рост стоимости атаки повышает вероятность выбора стратегии «Не
+атаковать».</p>
+<h1 id="дополнительное-задание-2">Дополнительное задание</h1>
+<h2 id="влияние-стоимости-защиты">Влияние стоимости защиты</h2>
+<figure id="fig-base">
+<img src="image/12.png" style="width:70.0%"
+alt="Влияние стоимости защиты на отказ от защиты" />
+<figcaption aria-hidden="true">Влияние стоимости защиты на отказ от
+защиты</figcaption>
+</figure>
+<p>Рост стоимости защиты увеличивает вероятность выбора стратегии «Не
+защищать ничего».</p>
+<h1 id="дополнительное-задание-3">Дополнительное задание</h1>
+<h2 id="сравнение-моделей">Сравнение моделей</h2>
+<figure id="fig-base">
+<img src="image/13.png" style="width:70.0%"
+alt="Сравнение выигрыша Нападающего" />
+<figcaption aria-hidden="true">Сравнение выигрыша
+Нападающего</figcaption>
+</figure>
+<p>Расширенная модель позволяет отказаться от невыгодных действий,
+поэтому демонстрирует более реалистичное поведение игроков.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<p>Рассмотрены:</p>
+<ul>
+<li>антагонистические игры;</li>
+<li>равновесие Нэша;</li>
+<li>смешанные стратегии;</li>
+<li>влияние стоимости атаки и защиты;</li>
+<li>практическое применение теории игр в информационной
+безопасности.</li>
+</ul>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе работы реализована модель конфликта «Защитник–Нападающий»,
+выполнён поиск равновесий Нэша и проведено исследование влияния
+параметров модели на поведение игроков.</p>
+<p>Дополнительно реализована расширенная версия игры с возможностью
+отказа от атаки и защиты. Полученные результаты показали, что новые
+стратегии делают модель более реалистичной и позволяют учитывать
+экономическую целесообразность действий сторон.</p>
+<h1 id="список-литературы">Список литературы</h1>
+<ol type="1">
+<li>Описание лабораторной работы</li>
+</ol>
+</body>
+</html>
